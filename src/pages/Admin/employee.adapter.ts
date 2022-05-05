@@ -6,5 +6,8 @@ export const employeeAdapter = ( user: any): Employee => ({
     surnames: user.surnames,
     names: user.names,
     email: user.email,
-    rol: user.rol
+    rol: user.rol,
+    isVaccinated: user.isVaccinated,
+    typeOfVaccine: user.typeOfVaccine,
+    vaccinationDate: user.vaccinationDate
 })

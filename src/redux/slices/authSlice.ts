@@ -4,7 +4,7 @@ import {RootState} from "../store";
 
 type AuthState = {
     user: User | null,
-    token: string | null
+    token: string | null,
 }
 
 const INITIAL_AUTH: AuthState = {
@@ -35,3 +35,4 @@ export default authSlice.reducer
 
 export const selectCurrentUser = (state: RootState) => state.auth.user
 export const selectIsAuth = (state: RootState) => !!(state.auth.user && state.auth.token)
+export const selectUserRol = (state: RootState) => state.auth.user?.rol

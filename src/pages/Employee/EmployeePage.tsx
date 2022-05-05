@@ -1,79 +1,52 @@
-import {Center, Stack, Container, Button, Heading} from "@chakra-ui/react";
-import {Formik, FormikValues} from "formik";
-import {SelectForm, SwitchForm, InputForm} from "../../components";
-import {validationAditionalInformation} from "./Schema/validationAditionalInformation";
-import {useUpdateMutation} from "../../service/employeeApi";
+import {Center, Container, Heading, Progress, Spinner} from "@chakra-ui/react";
+import {useGetEmployeeQuery, useUpdateMutation} from "../../service/employeeApi";
 import {useSelector} from "react-redux";
 import {selectCurrentUser} from "../../redux/slices/authSlice";
-
-
-const currentDate = new Date().toISOString().slice(0, 10)
+import FormEmployeeExtend from "./FormEmployeeExtend";
+import {useEffect} from "react";
+import {useToast} from '@chakra-ui/react'
 
 export const EmployeePage = () => {
 
-    const [update] = useUpdateMutation()
+    const currentUser = useSelector(selectCurrentUser)
+    const [update, {isLoading: isLoadingUpdate, isSuccess, isError, error}] = useUpdateMutation()
+    const {data: currentEmployee, isLoading} = useGetEmployeeQuery(currentUser!.id)
+    const toast = useToast()
+    const handleSubmit = (values: any) => {
 
-    const currentUser = useSelector( selectCurrentUser )
+        update({...values})
+    }
 
-    const handleSubmit = (values: FormikValues) => {
-        // update({...values})
+    useEffect(() => {
+        if (isSuccess) {
+            toast({
+                title: 'Guardado',
+                status: 'success',
+                duration: 1000,
+                isClosable: true,
+            })
+        }
+        if (isError && error) {
+            toast({
+                title:  (error as any).data,
+                status: 'error',
+                duration: 1000,
+                isClosable: true,
+            })
+        }
+    }, [isSuccess, isError])
+
+
+    if (isLoading) {
+        return (<Progress/>)
     }
 
     return (
         <Container>
             <Heading p={4}>Empleado</Heading>
             <Center bg='transparent' h='auto'>
-                <Formik initialValues={{
-                    dateOfBirth: currentDate,
-                    direction: '',
-                    mobilePhone: '',
-                    isVaccinated: false,
-                    typeOfVaccine: '',
-                    vaccinationDate: '',
-                    numberOfDoses: ''
-                }}
-                        validationSchema={validationAditionalInformation}
-                        onSubmit={handleSubmit}>
-                    {
-                        (formik) => (
-                            <Stack spacing={3}>
-                                <InputForm type="date" variant='outline' label="Fecha de Nacimiento"
-                                           name="dateOfBirth"/>
-                                <InputForm type="text" variant='outline' placeholder='Direccion...'
-                                           label="Dirección de domicilio" name="direction"/>
-                                <InputForm variant='outline' placeholder='Telefono...'
-                                           label="Teléfono móvil" name="mobilePhone"/>
-                                <SwitchForm variant='outline' label="Estado de vacunación" name="isVaccinated"/>
-                                {
-                                    formik.values.isVaccinated && (
-                                        <>
-                                            <SelectForm variant='outline' label="Tipo de Vacuna" name="typeOfVaccine">
-                                                <option value=''>Seleccione</option>
-                                                <option value='Sputnik'>Sputnik</option>
-                                                <option value='AstraZeneca'>AstraZeneca</option>
-                                                <option value='Pfizer'>Pfizer</option>
-                                                <option value='Jhonson&Jhonson'>Jhonson&Jhonson</option>
-                                            </SelectForm>
-                                            <InputForm type="date" variant='outline' placeholder='Fecha de vacunacion...'
-                                                       label="Fecha de vacunación" name="vaccinationDate"/>
-                                            <InputForm type="number" variant='outline' placeholder='Numero de dosis'
-                                                       label="Numero de dosis" name="numberOfDoses"/>
-
-                                        </>
-                                    )
-                                }
-                                <Button variant='ghost' onClick={formik.submitForm}>Guardar</Button>
-
-                            </Stack>
-                        )
-                    }
-
-
-                </Formik>
-
+                <FormEmployeeExtend employee={currentEmployee} isLoading={isLoadingUpdate} handleSubmit={handleSubmit}/>
             </Center>
-
-
         </Container>
     )
 }

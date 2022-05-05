@@ -1,95 +1,29 @@
 {
   "users": [
     {
-      "ci": "1231231312",
-      "names": "asdasdasd",
-      "surnames": "RUALES AYALA232asd",
-      "email": "msruales@122232.comasd",
-      "password": "$2a$10$25Uh9lQfDYTDq/Aq8bCSMemEyK/7wjnpMpvLqKKUQWqoatKKLj5zi",
-      "rol": "employee",
-      "id": 3
-    },
-    {
-      "email": "msruales@1222.com",
-      "password": "$2a$10$IvazH7wVz/no0iM2f8U.SupTR9Y6b.DJOq7a3vO5WAbSxSuLNZMqW",
-      "ci": "12312313",
-      "names": "MARCOS STALIN2",
-      "surnames": "RUALES AYALA2",
-      "id": 4
-    },
-    {
-      "email": "msruales@122232.com",
-      "password": "$2a$10$FmCeGoK5Q.J/bgrsBr7EL.XPIbdLTOpKRA8dxiU4CsmkCGnJKSFQ2",
-      "ci": "1231231312",
-      "names": "MARCOS STALIN232",
-      "surnames": "RUALES AYALA232",
-      "id": 5
-    },
-    {
-      "email": "msruales@122232.comasd",
-      "password": "$2a$10$AUHkqyHVe2kmjHkKk400PuFAMgwWC9JxjW1mI43QJSTnl69PEC7jm",
-      "ci": "1231231312",
-      "names": "MARCOS STALIN232asd",
-      "surnames": "RUALES AYALA232asd",
-      "rol": "employee",
-      "id": 6
-    },
-    {
-      "email": "markosrua1994@gmail.com",
-      "password": "$2a$10$b2eia4DCM5rBONAU5BF71uFeGKQ/bwNAL7CbYzRgv.fNUpoWtABJ6",
-      "ci": "1212121212",
-      "names": "asdasd",
-      "surnames": "asdasd",
-      "id": 7
-    },
-    {
-      "email": "markosrua1994333@gmail.com",
-      "password": "$2a$10$YCZxsSZh.mA9Qfk6JfUC8OXerIAUorPxayTJY10TCIV5EBePja0Ta",
-      "ci": "1212121223",
-      "names": "asdasd",
-      "surnames": "dfdg",
-      "id": 8
-    },
-    {
-      "email": "diogonc+1@gmail.com",
-      "password": "$2a$10$.E5p5Dq25bC/hFlmDOsUN.XQxX8cAkqjZ0Pr2I0V99zUSNoijV5h6",
-      "ci": "1234122222",
-      "names": "test na",
-      "surnames": "lastnamefg fgfds fdf",
-      "id": 9
-    },
-    {
-      "email": "markosrua199ASDASD4@gmail.com",
-      "password": "$2a$10$70fG7y/JzN5LNKuv18xF6uRZ45t4qFmkwUr4gC9r0ohPHvrgfnzSC",
-      "ci": "1234567891",
-      "names": "TEST ASDASD",
-      "surnames": "ASDASD",
-      "id": 10
-    },
-    {
-      "email": "markosrua1994@gmail.comASDASD",
-      "password": "$2a$10$/NtcWcV2rCROISIl2XGHoend1NKYZyYbU37fzLrK0ezx8MMWnOrBK",
-      "ci": "1111111111",
-      "names": "FINAL TEST",
-      "surnames": "ASDASD",
-      "id": 11
-    }
-  ],
-  "posts": [
-    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$tdjngkjQ8U548cQ2KETxsObq0w5WT252pgb7pf8lAZwMYHSBYeI.e",
+      "ci": "1003748488",
+      "names": "MARCOS ",
+      "surnames": "RUALES",
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "rol": "admin"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "email": "newEmpleado@gmail.com",
+      "password": "$2a$10$sGiVqgJv1WYKwlbJU7/0qOOwd6elWTfZb8duiWw8COBqofbhlbmf6",
+      "ci": 1111111112,
+      "names": "TEST NOMBRE",
+      "surnames": "TEST APELLIDO",
+      "rol": "employee",
+      "id": 2,
+      "dateOfBirth": "2022-05-05",
+      "direction": "TEST DOMICILIO",
+      "mobilePhone": "1212121212",
+      "isVaccinated": true,
+      "typeOfVaccine": "Pfizer",
+      "vaccinationDate": "2022-05-01",
+      "numberOfDoses": 2
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

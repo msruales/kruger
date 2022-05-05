@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Navigate} from "react-router-dom";
-import {selectIsAuth} from "../redux/slices/authSlice";
+import {selectIsAuth, selectUserRol} from "../redux/slices/authSlice";
 import {useSelector} from "react-redux";
 
 type Props = {
@@ -9,11 +9,10 @@ type Props = {
 
 export const PrivateRoute: FC<Props> = ({children}: Props) => {
 
-     const isAuth = useSelector(selectIsAuth)
-
-
+    const isAuth = useSelector(selectIsAuth)
+    const currentRol = useSelector(selectUserRol)
     return isAuth
-        ? <Navigate to="/admin" />
+        ? currentRol === "admin" ? <Navigate to="/admin"/> : <Navigate to="/employee"/>
         : children
 
 }

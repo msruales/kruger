@@ -4,7 +4,7 @@ import {
     Stack,
     Button,
     Heading,
-    useColorModeValue,
+    useColorModeValue, useToast,
 } from '@chakra-ui/react';
 import {useLoginMutation} from "../service/authApi";
 import {useDispatch} from "react-redux";
@@ -12,16 +12,30 @@ import {setCredentials} from "../../../redux/slices/authSlice";
 import {Formik} from "formik";
 import {validationLogin} from "./schema/Schema";
 import {InputForm} from "../../../components";
+import {useEffect} from "react";
+
 
 export const Login = () => {
 
     const [login, {isLoading, isError, error}] = useLoginMutation();
     const dispatch = useDispatch();
+    const toast = useToast()
 
     const handleClick = async (values: any) => {
         const {accessToken, user} = await login(values).unwrap()
         dispatch(setCredentials({token: accessToken, user}))
     }
+
+    useEffect(() => {
+        if (isError && error) {
+            toast({
+                title:  (error as any).data,
+                status: 'error',
+                duration: 1000,
+                isClosable: true,
+            })
+        }
+    }, [isError])
 
     return (
         <Flex
